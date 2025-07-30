@@ -1,0 +1,148 @@
+.guidesContainer {
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: "Unbounded", serif;
+    color: white;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 1rem;
+    
+    h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #ffd700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        margin: 0;
+        padding: 1rem 0;
+    }
+}
+
+.section {
+    margin-bottom: 3rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+    
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 0 1rem 0;
+        color: #ffd700;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+        justify-content: center;
+    }
+
+    
+    
+    .sectionDescription {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 8px;
+        border-left: 4px solid #ffd700;
+        text-align: center;
+    }
+}
+
+.guideList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.guideItem {
+    padding: 1rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+    
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    &:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-color: #ffd700;
+    }
+    
+    .guideTitle {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        display: block;
+    }
+}
+
+// Анимация для заголовка
+.fadeIn {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .guidesContainer {
+        padding: 0.5rem;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        
+        h2 {
+            font-size: 1.25rem;
+        }
+    }
+    
+    .guideItem {
+        padding: 0.75rem;
+        
+        .guideTitle {
+            font-size: 0.875rem;
+        }
+    }
+} 

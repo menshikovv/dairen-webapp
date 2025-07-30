@@ -1,6 +1,5 @@
 import s from './Guides.module.scss'
 import { useState, useEffect, useRef } from 'react'
-import { Button } from '../Button/Button'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { tg } from '../../shared/lib/telegram'
 

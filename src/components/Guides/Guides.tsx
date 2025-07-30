@@ -8,6 +8,7 @@ export const Guides = () => {
     const navigate = useNavigate()
     const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set())
     const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set())
+    const [showScrollIndicator, setShowScrollIndicator] = useState(true)
     const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
     const itemRefs = useRef<{ [key: string]: HTMLDivElement | null }>({})
 
@@ -29,7 +30,22 @@ export const Guides = () => {
             mainElement.scrollTo(0, 0)
         }
         window.scrollTo(0, 0)
+        setShowScrollIndicator(true)
     }, [location.pathname])
+
+    // Обработчик прокрутки для скрытия индикатора
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 100) {
+                setShowScrollIndicator(false)
+            } else {
+                setShowScrollIndicator(true)
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     // Intersection Observer для анимации секций при скролле
     useEffect(() => {
@@ -105,6 +121,16 @@ export const Guides = () => {
         <div className={s.guidesContainer}>
             <div className={`${s.header} ${s.fadeIn}`}>
                 <h1>ГАЙДЫ ПЕРВОЙ НЕОБХОДИМОСТИ!</h1>
+            </div>
+            
+            {/* Индикатор прокрутки */}
+            <div className={`${s.scrollIndicator} ${s.fadeIn} ${showScrollIndicator ? s.visible : s.hidden}`}>
+                <div className={s.scrollArrow}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </div>
+                <span className={s.scrollText}>Листай вниз</span>
             </div>
 
             <div 
